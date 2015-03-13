@@ -1,13 +1,15 @@
 package com.cs13.kruskarl;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Launcher {
 
 	public static void main(String[] args) {
 
 		ArrayList<Node> nodeList = new ArrayList<>();
-		//irgendeineQueue erstellen mit Nodeentries
+		// brauchen nen comparator
+		PriorityQueue<Edge> priorityqueue = new PriorityQueue<Edge>();
 		
 		// TODO MATTHIAS die unteren beiden Kommentare
 		// Alle Nodes erstellen und der Nodeliste hinzufügen
@@ -17,7 +19,7 @@ public class Launcher {
 		while(true){
 			
 			// NodeEntry entry = IrgendeineQueue.remove();
-			NodeEntry entry = new NodeEntry(null, null, 0);
+			Edge entry = new Edge(null, null, 0);
 			
 			Node firstNode = entry.getFirstNode();
 			Node secondNode = entry.getSecondNode();

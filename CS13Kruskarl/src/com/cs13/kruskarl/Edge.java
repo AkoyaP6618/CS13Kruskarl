@@ -1,6 +1,7 @@
 package com.cs13.kruskarl;
 
-public class NodeEntry {
+
+public class Edge{
 
 	private Node firstNode;
 	private Node secondNode;
@@ -10,7 +11,7 @@ public class NodeEntry {
 	 * Ein Kanteneintrag mit den jeweiligen Knoten und dem Gewicht
 	 * @author Sebastian
 	 */
-	public NodeEntry(Node first, Node second, int weight){
+	public Edge(Node first, Node second, int weight){
 		this.firstNode = first;
 		this.secondNode = second;
 		this.weight = weight;
@@ -27,7 +28,5 @@ public class NodeEntry {
 	public int getWeight() {
 		return weight;
 	}
-	
-	
 	
 }
