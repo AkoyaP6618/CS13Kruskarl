@@ -30,21 +30,19 @@ public class Launcher {
 
 	    Node firstNode = entry.getFirstNode();
 	    Node secondNode = entry.getSecondNode();
-
+	    
 	    if (firstNode.isVisited() == false && secondNode.isVisited() == false) {
 
 		firstNode.visit();
 		secondNode.visit();
 		firstNode.setRoot(true);
 		secondNode.setParent(firstNode);
-
 	    }
 
 	    if (firstNode.isVisited() == true && secondNode.isVisited() == true
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
 		secondNode.setParent(firstNode);
-		secondNode.setRoot(false);
 
 	    }
 
@@ -68,8 +66,13 @@ public class Launcher {
 		    printOut += " " + node.getName();
 		}
 	    }
-
+	    System.out.println(printOut);
 	}
 
+	for (Node node : nodeList) {
+		System.out.println("I am " + node.getName() + " my Parent is " + node.getParent().getName());
+	}
+	
+	
     }
 }

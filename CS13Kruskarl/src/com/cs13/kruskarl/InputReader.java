@@ -22,9 +22,10 @@ public class InputReader {
 	try {
 	    BufferedReader input = new BufferedReader(new FileReader(file));
 
-	    while (input.readLine() != null) {
+	 
+	    while (input.ready()) {
 		String line = input.readLine();
-		String[] parameters = line.split("\t");
+		String[] parameters = line.split("\t", 3);
 
 		String name1 = parameters[0];
 		String name2 = parameters[1]; //moegliche Namen fuer neue Knoten
@@ -79,7 +80,7 @@ public class InputReader {
 	try {
 	    BufferedReader input = new BufferedReader(new FileReader(file));
 
-	    while (input.readLine() != null) {
+	    while (input.ready()) {
 		String line = input.readLine();
 		String[] parameters = line.split("\t");
 		queue.add(new Edge(new Node(parameters[0]), new Node(parameters[1]), Integer

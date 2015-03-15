@@ -38,6 +38,7 @@ public class Node {
 
     public void setParent(Node node) {
 	parent = node;
+	this.isRoot = false;
     }
 
     public void setRoot(boolean root) {
