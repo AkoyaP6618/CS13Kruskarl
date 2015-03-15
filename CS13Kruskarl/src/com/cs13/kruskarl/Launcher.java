@@ -94,6 +94,7 @@ public class Launcher {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+
 	// while(!IrgendeineQueue.isEmpty()){
 	while (true) {
 
@@ -144,5 +145,4 @@ public class Launcher {
 	}
 
     }
-
 }
