@@ -51,7 +51,7 @@ public class Launcher {
 
 		if (matcher.find()) {
 		    String name1 = matcher.group(1);
-		    String name2 = matcher.group(2); //moegliche Namen für neue Knoten
+		    String name2 = matcher.group(2); //moegliche Namen fuer neue Knoten
 		    boolean containsName1 = false;
 		    boolean containsName2 = false;
 
@@ -96,10 +96,10 @@ public class Launcher {
 	}
 
 	// while(!IrgendeineQueue.isEmpty()){
-	while (true) {
+	while (!queue.isEmpty()) {
 
 	    // NodeEntry entry = IrgendeineQueue.remove();
-	    Edge entry = new Edge(null, null, 0);
+	    Edge entry = queue.poll();
 
 	    Node firstNode = entry.getFirstNode();
 	    Node secondNode = entry.getSecondNode();
