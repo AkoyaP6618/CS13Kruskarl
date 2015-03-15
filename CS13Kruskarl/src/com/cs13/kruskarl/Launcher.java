@@ -78,16 +78,21 @@ public class Launcher {
 		    liste += " " + node.getName();
 		}
 	    }
-	    if(liste != ""){
-	    	System.out.println(printOut + liste);
+	    if (liste != "") {
+		System.out.println(printOut + liste);
 	    }
 	}
-	
+
 	System.out.println("Alle Knoten wurden besucht.");
 
 	for (Node node : nodeList) {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
+	}
+	System.out.println("tree:");
+	for (Edge edge : tree) {
+	    System.out.println("{ " + edge.getFirstNode().getName() + " , "
+		    + edge.getSecondNode().getName() + " }");
 	}
 
     }
