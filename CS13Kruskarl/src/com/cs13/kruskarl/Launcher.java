@@ -8,7 +8,7 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-	File file = new File("daten.txt");
+	File file = new File("Daten9A.txt");
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
@@ -47,6 +47,7 @@ public class Launcher {
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
 		secondNode.setParent(firstNode);
+		secondNode.setRoot(false);
 		System.out.println("added edge " + firstNode.getName() + " - "
 			+ secondNode.getName());
 		tree.add(entry);
