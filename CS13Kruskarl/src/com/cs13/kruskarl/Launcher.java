@@ -70,14 +70,20 @@ public class Launcher {
 		tree.add(entry);
 	    }
 
+	    // Ausgabe der noch nicht besuchten Knoten
 	    String printOut = "Noch nicht besucht:";
+	    String liste = "";
 	    for (Node node : nodeList) {
 		if (node.isVisited() == false) {
-		    printOut += " " + node.getName();
+		    liste += " " + node.getName();
 		}
 	    }
-	    System.out.println(printOut);
+	    if(liste != ""){
+	    	System.out.println(printOut + liste);
+	    }
 	}
+	
+	System.out.println("Alle Knoten wurden besucht.");
 
 	for (Node node : nodeList) {
 	    System.out.println("I am " + node.getName() + " my Parent is "
