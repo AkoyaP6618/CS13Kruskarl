@@ -2,13 +2,14 @@ package com.cs13.kruskarl;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Launcher {
 
     public static void main(String[] args) {
 
-	File file = new File("daten.txt");
+	File file = new File("Daten9A.txt");
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
@@ -17,11 +18,11 @@ public class Launcher {
 	// Alle Nodes erstellen und der Nodeliste hinzufuegen
 
 	nodeList = reader.readNodes();
-
+	Collections.sort(nodeList, new SortList());
 	// Alle Kanten erstellen und Kanten der Queue hinzufuegen
 
 	queue = reader.readEdges(nodeList);
-
+	
 	// while(!IrgendeineQueue.isEmpty()){
 	while (!queue.isEmpty()) {
 
@@ -79,7 +80,6 @@ public class Launcher {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
 	    if (node.isRoot()) {
-		System.out.println("I am root" + node.getName());
 	    }
 	}
 
