@@ -20,7 +20,7 @@ public class Launcher {
 
 	// Alle Kanten erstellen und Kanten der Queue hinzufuegen
 
-	queue = reader.readEdges();
+	queue = reader.readEdges(nodeList);
 
 	// while(!IrgendeineQueue.isEmpty()){
 	while (!queue.isEmpty()) {
@@ -30,7 +30,7 @@ public class Launcher {
 
 	    Node firstNode = entry.getFirstNode();
 	    Node secondNode = entry.getSecondNode();
-	    
+
 	    if (firstNode.isVisited() == false && secondNode.isVisited() == false) {
 
 		firstNode.visit();
@@ -70,9 +70,9 @@ public class Launcher {
 	}
 
 	for (Node node : nodeList) {
-		System.out.println("I am " + node.getName() + " my Parent is " + node.getParent().getName());
+	    System.out.println("I am " + node.getName() + " my Parent is "
+		    + node.getParent().getName());
 	}
-	
-	
+
     }
 }
