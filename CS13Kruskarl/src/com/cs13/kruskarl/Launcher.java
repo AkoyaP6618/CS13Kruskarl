@@ -13,6 +13,7 @@ public class Launcher {
 
 	ArrayList<Node> nodeList;
 	PriorityQueue<Edge> queue;
+	ArrayList<Edge> tree = new ArrayList<Edge>();
 
 	// Alle Nodes erstellen und der Nodeliste hinzufuegen
 
@@ -37,27 +38,36 @@ public class Launcher {
 		secondNode.visit();
 		firstNode.setRoot(true);
 		secondNode.setParent(firstNode);
+		System.out.println("added edge " + firstNode.getName() + " - "
+			+ secondNode.getName());
+		tree.add(entry);
 	    }
 
 	    if (firstNode.isVisited() == true && secondNode.isVisited() == true
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
 		secondNode.setParent(firstNode);
-
+		System.out.println("added edge " + firstNode.getName() + " - "
+			+ secondNode.getName());
+		tree.add(entry);
 	    }
 
 	    if (firstNode.isVisited() == true && secondNode.isVisited() == false) {
 
 		secondNode.visit();
 		secondNode.setParent(firstNode);
-
+		System.out.println("added edge " + firstNode.getName() + " - "
+			+ secondNode.getName());
+		tree.add(entry);
 	    }
 
 	    if (firstNode.isVisited() == false && secondNode.isVisited() == true) {
 
 		firstNode.visit();
 		firstNode.setParent(secondNode);
-
+		System.out.println("added edge " + firstNode.getName() + " - "
+			+ secondNode.getName());
+		tree.add(entry);
 	    }
 
 	    String printOut = "Noch nicht besucht:";
@@ -72,9 +82,6 @@ public class Launcher {
 	for (Node node : nodeList) {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
-	    if (node.isRoot()) {
-		System.out.println("I am root" + node.getName());
-	    }
 	}
 
     }
