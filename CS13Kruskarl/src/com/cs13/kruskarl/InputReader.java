@@ -22,7 +22,6 @@ public class InputReader {
 	try {
 	    BufferedReader input = new BufferedReader(new FileReader(file));
 
-	 
 	    while (input.ready()) {
 		String line = input.readLine();
 		String[] parameters = line.split("\t", 3);
@@ -54,7 +53,7 @@ public class InputReader {
 	return nodeList;
     }
 
-    public PriorityQueue<Edge> readEdges() {
+    public PriorityQueue<Edge> readEdges(ArrayList<Node> nodeList) {
 
 	Comparator<Edge> comparator = new Comparator<Edge>() { // Komparator fuer PriorityQueue
 
@@ -76,6 +75,8 @@ public class InputReader {
 	    }
 	};
 	PriorityQueue<Edge> queue = new PriorityQueue<Edge>(comparator);
+	Node node1 = null;
+	Node node2 = null;
 
 	try {
 	    BufferedReader input = new BufferedReader(new FileReader(file));
@@ -83,8 +84,15 @@ public class InputReader {
 	    while (input.ready()) {
 		String line = input.readLine();
 		String[] parameters = line.split("\t");
-		queue.add(new Edge(new Node(parameters[0]), new Node(parameters[1]), Integer
-			.parseInt(parameters[2])));
+		for (Node node : nodeList) {
+		    if (node.getName().equals(parameters[0])) {
+			node1 = node;
+		    }
+		    if (node.getName().equals(parameters[1])) {
+			node2 = node;
+		    }
+		}
+		queue.add(new Edge(node1, node2, Integer.parseInt(parameters[2])));
 
 	    }
 
