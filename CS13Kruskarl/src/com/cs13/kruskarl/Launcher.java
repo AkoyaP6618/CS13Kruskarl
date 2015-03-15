@@ -8,7 +8,7 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-	File file = new File("Daten9A.txt");
+	File file = new File("daten.txt");
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
@@ -72,6 +72,9 @@ public class Launcher {
 	for (Node node : nodeList) {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
+	    if (node.isRoot()) {
+		System.out.println("I am root" + node.getName());
+	    }
 	}
 
     }
