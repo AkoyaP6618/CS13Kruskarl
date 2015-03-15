@@ -21,7 +21,14 @@ public class Node {
 	}
 	
 	public Node getRootNode(){
-		return null; // TODO Matthias finde durch rekursiven aufruf den Wurzelknoten
+		
+		if(this.isRoot() == true){
+			return this;
+		}else{
+			parent.getRootNode();
+		}
+		
+		return null;
 	}
 	
 	public void visit(){
