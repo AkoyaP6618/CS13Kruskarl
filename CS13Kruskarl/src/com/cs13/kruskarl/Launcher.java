@@ -9,7 +9,7 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-	File file = new File("Daten9A.txt");
+	File file = new File("daten9b.txt");
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
@@ -91,7 +91,7 @@ public class Launcher {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
 	}
-	System.out.println("tree:");
+	System.out.println("Minimalgeruest:");
 	for (Edge edge : tree) {
 	    System.out.println("{ " + edge.getFirstNode().getName() + " , "
 		    + edge.getSecondNode().getName() + " }");
