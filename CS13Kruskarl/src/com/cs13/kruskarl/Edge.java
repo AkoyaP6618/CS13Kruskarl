@@ -9,7 +9,7 @@ public class Edge {
     /**
      * Ein Kanteneintrag mit den jeweiligen Knoten und dem Gewicht
      * 
-     * @author Sebastian
+     * @author Sebastian Wolff
      */
     public Edge(Node first, Node second, int weight) {
 	this.firstNode = first;

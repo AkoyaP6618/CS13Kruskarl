@@ -16,12 +16,14 @@ public class Launcher {
 
     public static void main(String[] args) {
 
+	// Sebastian Wolff
+
 	String output = "";
 
 	// Einlesen der Daten, Benutzer waehlt die Datei
 	File file = new File("Daten9A.txt");
 
-	int i = new JOptionPane()
+	int i = JOptionPane
 		.showConfirmDialog(
 			null,
 			"Bitte geben sie eine Datei mit Kanteneintraegen an.\nStandardmaessig wird die \"Daten9A.txt\" benutzt, falls keine Datei ausgewaehlt wurde.",
@@ -40,13 +42,14 @@ public class Launcher {
 	}
 
 	output += "-- Es wurde die Datei " + file.getName() + " verwendet. --\n\n";
-	System.out.println("Es wurde die Datei " + file.getName() + " verwendet.");
 
 	InputReader reader = new InputReader(file);
 
+	// Matthias Thurow
+
 	ArrayList<Node> nodeList;
 	PriorityQueue<Edge> queue;
-	ArrayList<Edge> tree = new ArrayList<Edge>();
+	ArrayList<Edge> tree = new ArrayList<Edge>(); // Liste der Kanten des Minimalgeruests
 
 	// Alle Nodes erstellen und der Nodeliste hinzufuegen
 
@@ -56,64 +59,67 @@ public class Launcher {
 
 	queue = reader.readEdges(nodeList);
 
-	// while(!IrgendeineQueue.isEmpty()){
 	while (!queue.isEmpty()) {
 
-	    // NodeEntry entry = IrgendeineQueue.remove();
 	    Edge entry = queue.poll();
+
+	    // Sebastian Wolff
 
 	    Node firstNode = entry.getFirstNode();
 	    Node secondNode = entry.getSecondNode();
 
+	    // beide Knoten unbesucht
 	    if (firstNode.isVisited() == false && secondNode.isVisited() == false) {
 
 		firstNode.visit();
 		secondNode.visit();
 		firstNode.setRoot(true);
 		secondNode.setParent(firstNode);
-		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		tree.add(entry);
+
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
-		tree.add(entry);
 	    }
 
+	    // beide Knoten besucht, aber unterschiedliche Wurzel
 	    if (firstNode.isVisited() == true && secondNode.isVisited() == true
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
 		secondNode.setParent(firstNode);
 		// Muesste ein Fehler sein
+		// soll -> secondNode.getRootNode().setRoot(false);
 		secondNode.setRoot(false);
-		//secondNode.getRootNode().setRoot(false);
 		
-		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		
+		tree.add(entry);
+
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
-		tree.add(entry);
 	    }
 
+	    // zweiter Knoten unbesucht
 	    if (firstNode.isVisited() == true && secondNode.isVisited() == false) {
 
 		secondNode.visit();
 		secondNode.setParent(firstNode);
-		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		tree.add(entry);
+
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
-		tree.add(entry);
 	    }
 
+	    // erster Knoten unbesucht
 	    if (firstNode.isVisited() == false && secondNode.isVisited() == true) {
 
 		firstNode.visit();
 		firstNode.setParent(secondNode);
-		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		tree.add(entry);
+
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
-		tree.add(entry);
 	    }
+
+	    // --> wenn beide besucht mit gleicher Wurzel passiert nichts
 
 	    // Ausgabe der noch nicht besuchten Knoten
 	    String printOut = "Noch nicht besucht:";
@@ -124,28 +130,26 @@ public class Launcher {
 		}
 	    }
 	    if (liste != "") {
-		System.out.println(printOut + liste);
 		output += printOut + liste + "\n";
 	    }
 	}
 
-	System.out.println("Alle Knoten wurden besucht.");
 	output += "\n-- Alle Knoten wurden besucht! --\n";
 
-	for (Node node : nodeList) {
-	    System.out.println("I am " + node.getName() + " my Parent is "
-		    + node.getParent().getName());
+	for (Node node : nodeList) { // Knotenliste mit dem Parent jedes einzelnen Knoten
 	    output += "I am " + node.getName() + " my Parent is " + node.getParent().getName()
 		    + "\n";
 	}
-	System.out.println("Minimalgeruest:");
+
+	// Matthias Thurow
+
 	output += "\n-- Alle Kanten des Minimalgeruests im Ueberblick --\n";
-	for (Edge edge : tree) {
-	    System.out.println("{ " + edge.getFirstNode().getName() + " , "
-		    + edge.getSecondNode().getName() + " , " + edge.getWeight() + " }");
+	for (Edge edge : tree) { // Ausgabe des Minimalgeruests
 	    output += "{ " + edge.getFirstNode().getName() + " , " + edge.getSecondNode().getName()
 		    + " , " + edge.getWeight() + " }" + "\n";
 	}
+
+	// Sebastian Wolff
 
 	// Ausgabe in einem extra-Fenster
 	JFrame frame = new JFrame("Minimalgeruest");

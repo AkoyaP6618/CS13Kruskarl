@@ -13,7 +13,7 @@ public class Node {
      * entweder Root sein oder nicht - kann entweder schon besucht sein oder
      * nicht
      * 
-     * @author Sebastian
+     * @author Sebastian Wolff
      */
     public Node(String name) {
 	alias = name;
