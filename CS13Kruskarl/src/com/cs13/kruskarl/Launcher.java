@@ -91,16 +91,16 @@ public class Launcher {
 
 		// Muesste ein Fehler sein
 		// soll -> secondNode.getRootNode().setRoot(false);
-		
+
 		for (Node node : nodeList) {
-			if( node.isVisited() && node.getRootNode().equals(secondNode.getRootNode())){
-				node.setRootNode(firstNode.getRootNode());
-			}
+		    if (node.isVisited() && node.getRootNode().equals(secondNode.getRootNode())) {
+			node.setRootNode(firstNode.getRootNode());
+		    }
 		}
 		secondNode.getRootNode().setRoot(false);
 		secondNode.setRootNode(firstNode.getRootNode());
 		secondNode.addParent(firstNode);
-		
+
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -153,21 +153,21 @@ public class Launcher {
 		    output += " " + node.getName();
 		}
 	    }
-	    output += "\n";
-	    
+	    output += "\n\n";
+
 	    // kanonische element ausgabe
 	    kanonischeAusgabe += "\n\nRoot:\t";
 	    for (Node node : nodeList) {
-	    	if(node.getRootNode() != null){
-	    		kanonischeAusgabe += node.getRootNode().getName() + " ";
-	    	}else{
-	    		kanonischeAusgabe += node.getName() + " ";
-	    	}
+		if (node.getRootNode() != null) {
+		    kanonischeAusgabe += node.getRootNode().getName() + " ";
+		} else {
+		    kanonischeAusgabe += node.getName() + " ";
+		}
 	    }
-	    
+
 	    kanonischeAusgabe += "\nNode:\t";
 	    for (Node node : nodeList) {
-	    	kanonischeAusgabe += node.getName() + " ";
+		kanonischeAusgabe += node.getName() + " ";
 	    }
 	}
 
