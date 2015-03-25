@@ -60,10 +60,13 @@ public class Launcher {
 
 	queue = reader.readEdges(nodeList);
 
+	boolean somethingHappened = false;
+	
 	while (!queue.isEmpty()) {
 
+		somethingHappened = false;
+		
 	    Edge entry = queue.poll();
-
 	    // Sebastian Wolff
 
 	    Node firstNode = entry.getFirstNode();
@@ -85,6 +88,7 @@ public class Launcher {
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
+		somethingHappened = true;
 	    }
 
 	    // beide Knoten besucht, aber unterschiedliche Wurzel
@@ -110,6 +114,7 @@ public class Launcher {
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
+		somethingHappened = true;
 	    }
 
 	    // zweiter Knoten unbesucht
@@ -123,6 +128,7 @@ public class Launcher {
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
+		somethingHappened = true;
 	    }
 
 	    // erster Knoten unbesucht
@@ -136,11 +142,14 @@ public class Launcher {
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
 			+ " Gewicht: " + entry.getWeight() + "\n";
+		somethingHappened = true;
 	    }
 
 	    // --> wenn beide besucht mit gleicher Wurzel passiert nichts
 
-	    // Ausgabe der noch nicht besuchten Knoten
+	    // Hier wird lediglich die Ausgabe von Informationen vorbereitet und formatiert
+	    
+	    if(somethingHappened){
 	    String printOut = "Noch nicht besucht:";
 	    String liste = "";
 	    for (Node node : nodeList) {
@@ -148,10 +157,12 @@ public class Launcher {
 		    liste += " " + node.getName();
 		}
 	    }
-	    if (liste != "") {
-		output += printOut + liste + "\n";
+	    if(liste != ""){
+	    	output += printOut + liste + "\n";
+	    }else{
+	    	output += "Alle Knoten wurden besucht.\n";
 	    }
-
+	    
 	    output += "Rootknoten:";
 	    for (Node node : nodeList) {
 		if (node.isRoot()) {
@@ -164,7 +175,11 @@ public class Launcher {
 	    kanonischeAusgabe += "\n\nRoot:\t";
 	    for (Node node : nodeList) {
 		if (node.getRootNode() != null) {
-		    kanonischeAusgabe += node.getRootNode().getName() + " ";
+			if(node.getRootNode().getName().length() < node.getName().length()){
+				kanonischeAusgabe += node.getRootNode().getName() + "_ ";
+			}else{
+				kanonischeAusgabe += node.getRootNode().getName() + " ";
+			}
 		} else {
 		    kanonischeAusgabe += node.getName() + " ";
 		}
@@ -172,11 +187,12 @@ public class Launcher {
 
 	    kanonischeAusgabe += "\nNode:\t";
 	    for (Node node : nodeList) {
+	    	if(node.getRootNode() != null && node.getName().length() < node.getRootNode().getName().length()){
+	    		kanonischeAusgabe += node.getName() + "_ ";
+			}
 		kanonischeAusgabe += node.getName() + " ";
-	    }
+	    }}
 	}
-
-	output += "\n-- Alle Knoten wurden besucht! --\n";
 
 	// Matthias Thurow
 
