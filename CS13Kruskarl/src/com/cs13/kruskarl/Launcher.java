@@ -19,6 +19,7 @@ public class Launcher {
 	// Sebastian Wolff
 
 	String output = "";
+	String kanonischeAusgabe = "";
 
 	// Einlesen der Daten, Benutzer waehlt die Datei
 	File file = new File("Daten9A.txt");
@@ -153,6 +154,21 @@ public class Launcher {
 		}
 	    }
 	    output += "\n";
+	    
+	    // kanonische element ausgabe
+	    kanonischeAusgabe += "\n\nRoot:\t";
+	    for (Node node : nodeList) {
+	    	if(node.getRootNode() != null){
+	    		kanonischeAusgabe += node.getRootNode().getName() + " ";
+	    	}else{
+	    		kanonischeAusgabe += node.getName() + " ";
+	    	}
+	    }
+	    
+	    kanonischeAusgabe += "\nNode:\t";
+	    for (Node node : nodeList) {
+	    	kanonischeAusgabe += node.getName() + " ";
+	    }
 	}
 
 	output += "\n-- Alle Knoten wurden besucht! --\n";
@@ -165,6 +181,7 @@ public class Launcher {
 		    + " , " + edge.getWeight() + " }" + "\n";
 	}
 
+	output += "\n\n" + kanonischeAusgabe;
 	// Sebastian Wolff
 
 	// Ausgabe in einem extra-Fenster
