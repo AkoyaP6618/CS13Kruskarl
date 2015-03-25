@@ -5,11 +5,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
+import javax.swing.JFileChooser;
+
 public class Launcher {
 
     public static void main(String[] args) {
 
-	File file = new File("daten9b.txt");
+   	File file = new File("Daten9A.txt");
+   	JFileChooser fileChooser = new JFileChooser();
+   	int returnVal = fileChooser.showOpenDialog(null);
+    
+    
+    if(returnVal == JFileChooser.APPROVE_OPTION){
+    	file = fileChooser.getSelectedFile();
+    }
+    
+    System.out.println("Es wurde die Datei " + file.getName() + " verwendet.");
+	
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
