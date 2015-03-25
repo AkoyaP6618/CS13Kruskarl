@@ -74,10 +74,12 @@ public class Launcher {
 
 		firstNode.visit();
 		secondNode.visit();
+
 		firstNode.setRoot(true);
 		firstNode.setRootNode(firstNode);
-		secondNode.addParent(firstNode);
+
 		secondNode.removeParent(secondNode);
+		secondNode.addParent(firstNode);
 		secondNode.setRootNode(firstNode);
 		tree.add(entry);
 
@@ -155,7 +157,7 @@ public class Launcher {
 	    output += "\n\n";
 
 	    // kanonische element ausgabe
-	    kanonischeAusgabe += "\n\n\nRoot:\t";
+	    kanonischeAusgabe += "\n\nRoot:\t";
 	    for (Node node : nodeList) {
 		if (node.getRootNode() != null) {
 		    kanonischeAusgabe += node.getRootNode().getName() + " ";
