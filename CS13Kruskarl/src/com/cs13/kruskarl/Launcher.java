@@ -185,20 +185,21 @@ public class Launcher {
 	    for (Node node : nodeList) {
 	    	if(node.getRootNode() != null && node.getName().length() < node.getRootNode().getName().length()){
 	    		kanonischeAusgabe += node.getName() + "_ ";
+			}else{
+				kanonischeAusgabe += node.getName() + " ";
 			}
-		kanonischeAusgabe += node.getName() + " ";
 	    }}
 	}
 
 	// Matthias Thurow
 
-	output += "\n-- Alle Kanten des Minimalgeruests im Ueberblick --\n";
+	output += "\n*Hinweis, die \"_\" dienen nur zur Einrueckung der einstelligen Zahlen.*\nKanonische Ausgabe:\n" + kanonischeAusgabe;
+	output += "\n\n\t-- Alle Kanten des Minimalgeruests im Ueberblick --\n";
 	for (Edge edge : tree) { // Ausgabe des Minimalgeruests
-	    output += "{ " + edge.getFirstNode().getName() + " , " + edge.getSecondNode().getName()
+	    output += "\t\t{ " + edge.getFirstNode().getName() + " , " + edge.getSecondNode().getName()
 		    + " , " + edge.getWeight() + " }" + "\n";
 	}
 
-	output += "\n\n" + kanonischeAusgabe;
 	// Sebastian Wolff
 
 	// Ausgabe in einem extra-Fenster
