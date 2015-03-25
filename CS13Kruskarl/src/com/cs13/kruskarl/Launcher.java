@@ -16,29 +16,32 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-    String output = "";	
-    
-    // Einlesen der Daten, Benutzer waehlt die Datei
-   	File file = new File("Daten9A.txt");
-   	
-   	int i = new JOptionPane().showConfirmDialog(null, "Bitte geben sie eine Datei mit Kanteneintraegen an.\nStandardmaessig wird die \"Daten9A.txt\" benutzt, falls keine Datei ausgewaehlt wurde.", "Hinweis", JOptionPane.YES_OPTION);
-   	if(i == JOptionPane.NO_OPTION){
-   		System.exit(0);
-   	}
-   	
-   	JFileChooser fileChooser = new JFileChooser();
-   	FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-   	fileChooser.setFileFilter(filter);
-   	int returnVal = fileChooser.showOpenDialog(null);
-    
-    
-    if(returnVal == JFileChooser.APPROVE_OPTION){
-    	file = fileChooser.getSelectedFile();
-    }
-    
-    output += "-- Es wurde die Datei " + file.getName() + " verwendet. --\n\n";
-    System.out.println("Es wurde die Datei " + file.getName() + " verwendet.");
-	
+	String output = "";
+
+	// Einlesen der Daten, Benutzer waehlt die Datei
+	File file = new File("Daten9A.txt");
+
+	int i = new JOptionPane()
+		.showConfirmDialog(
+			null,
+			"Bitte geben sie eine Datei mit Kanteneintraegen an.\nStandardmaessig wird die \"Daten9A.txt\" benutzt, falls keine Datei ausgewaehlt wurde.",
+			"Hinweis", JOptionPane.CANCEL_OPTION);
+	if (i == JOptionPane.CANCEL_OPTION) {
+	    System.exit(0);
+	}
+
+	JFileChooser fileChooser = new JFileChooser();
+	FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+	fileChooser.setFileFilter(filter);
+	int returnVal = fileChooser.showOpenDialog(null);
+
+	if (returnVal == JFileChooser.APPROVE_OPTION) {
+	    file = fileChooser.getSelectedFile();
+	}
+
+	output += "-- Es wurde die Datei " + file.getName() + " verwendet. --\n\n";
+	System.out.println("Es wurde die Datei " + file.getName() + " verwendet.");
+
 	InputReader reader = new InputReader(file);
 
 	ArrayList<Node> nodeList;
@@ -52,7 +55,7 @@ public class Launcher {
 	// Alle Kanten erstellen und Kanten der Queue hinzufuegen
 
 	queue = reader.readEdges(nodeList);
-	
+
 	// while(!IrgendeineQueue.isEmpty()){
 	while (!queue.isEmpty()) {
 
@@ -69,9 +72,9 @@ public class Launcher {
 		firstNode.setRoot(true);
 		secondNode.setParent(firstNode);
 		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName());
-		output += "added edge " + firstNode.getName() + " - "
-				+ secondNode.getName() + "\n";
+			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
+			+ " Gewicht: " + entry.getWeight() + "\n";
 		tree.add(entry);
 	    }
 
@@ -81,9 +84,9 @@ public class Launcher {
 		secondNode.setParent(firstNode);
 		secondNode.setRoot(false);
 		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName());
-		output += "added edge " + firstNode.getName() + " - "
-				+ secondNode.getName() + "\n";
+			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
+			+ " Gewicht: " + entry.getWeight() + "\n";
 		tree.add(entry);
 	    }
 
@@ -92,9 +95,9 @@ public class Launcher {
 		secondNode.visit();
 		secondNode.setParent(firstNode);
 		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName());
-		output += "added edge " + firstNode.getName() + " - "
-				+ secondNode.getName() + "\n";
+			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
+			+ " Gewicht: " + entry.getWeight() + "\n";
 		tree.add(entry);
 	    }
 
@@ -103,9 +106,9 @@ public class Launcher {
 		firstNode.visit();
 		firstNode.setParent(secondNode);
 		System.out.println("added edge " + firstNode.getName() + " - "
-			+ secondNode.getName());
-		output += "added edge " + firstNode.getName() + " - "
-				+ secondNode.getName() + "\n";
+			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
+		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
+			+ " Gewicht: " + entry.getWeight() + "\n";
 		tree.add(entry);
 	    }
 
@@ -129,33 +132,32 @@ public class Launcher {
 	for (Node node : nodeList) {
 	    System.out.println("I am " + node.getName() + " my Parent is "
 		    + node.getParent().getName());
-	    output += "I am " + node.getName() + " my Parent is "
-			    + node.getParent().getName() + "\n";
+	    output += "I am " + node.getName() + " my Parent is " + node.getParent().getName()
+		    + "\n";
 	}
 	System.out.println("Minimalgeruest:");
 	output += "\n-- Alle Kanten des Minimalgeruests im Ueberblick --\n";
 	for (Edge edge : tree) {
 	    System.out.println("{ " + edge.getFirstNode().getName() + " , "
-		    + edge.getSecondNode().getName() + " }");
-	    output += "{ " + edge.getFirstNode().getName() + " , "
-			    + edge.getSecondNode().getName() + " }"+ "\n";
+		    + edge.getSecondNode().getName() + " , " + edge.getWeight() + " }");
+	    output += "{ " + edge.getFirstNode().getName() + " , " + edge.getSecondNode().getName()
+		    + " , " + edge.getWeight() + " }" + "\n";
 	}
 
 	// Ausgabe in einem extra-Fenster
 	JFrame frame = new JFrame("Minimalgeruest");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setSize(600,800);
+	frame.setSize(600, 800);
 	frame.setLocationRelativeTo(null);
 
-	
 	JTextArea area = new JTextArea();
 	area.setEditable(false);
 	area.setText(output);
-	
+
 	JScrollPane scrollPane = new JScrollPane(area);
 
 	frame.add(scrollPane);
 	frame.setVisible(true);
     }
-    
+
 }
