@@ -69,12 +69,13 @@ public class Launcher {
 	    Node secondNode = entry.getSecondNode();
 
 	    // beide Knoten unbesucht
-	    if (firstNode.isVisited() == false && secondNode.isVisited() == false) {
+	    if (!firstNode.isVisited() && !secondNode.isVisited()) {
 
 		firstNode.visit();
 		secondNode.visit();
 		firstNode.setRoot(true);
-		secondNode.setParent(firstNode);
+		secondNode.addParent(firstNode);
+		secondNode.removeParent(secondNode);
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -82,15 +83,14 @@ public class Launcher {
 	    }
 
 	    // beide Knoten besucht, aber unterschiedliche Wurzel
-	    if (firstNode.isVisited() == true && secondNode.isVisited() == true
+	    if (firstNode.isVisited() && secondNode.isVisited()
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
-		secondNode.setParent(firstNode);
+		secondNode.addParent(firstNode);
 		// Muesste ein Fehler sein
 		// soll -> secondNode.getRootNode().setRoot(false);
-		secondNode.setRoot(false);
-		
-		
+		secondNode.getRootNode().setRoot(false);
+
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -98,10 +98,11 @@ public class Launcher {
 	    }
 
 	    // zweiter Knoten unbesucht
-	    if (firstNode.isVisited() == true && secondNode.isVisited() == false) {
+	    if (firstNode.isVisited() && !secondNode.isVisited()) {
 
 		secondNode.visit();
-		secondNode.setParent(firstNode);
+		secondNode.addParent(firstNode);
+		secondNode.removeParent(secondNode);
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -109,10 +110,11 @@ public class Launcher {
 	    }
 
 	    // erster Knoten unbesucht
-	    if (firstNode.isVisited() == false && secondNode.isVisited() == true) {
+	    if (!firstNode.isVisited() && secondNode.isVisited()) {
 
 		firstNode.visit();
-		firstNode.setParent(secondNode);
+		firstNode.addParent(secondNode);
+		firstNode.removeParent(firstNode);
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -132,14 +134,17 @@ public class Launcher {
 	    if (liste != "") {
 		output += printOut + liste + "\n";
 	    }
+
+	    for (Node node : nodeList) {
+		output += "Rootknoten:";
+		if (node.isRoot()) {
+		    output += " " + node.getName();
+		}
+	    }
+	    output += "\n";
 	}
 
 	output += "\n-- Alle Knoten wurden besucht! --\n";
-
-	for (Node node : nodeList) { // Knotenliste mit dem Parent jedes einzelnen Knoten
-	    output += "I am " + node.getName() + " my Parent is " + node.getParent().getName()
-		    + "\n";
-	}
 
 	// Matthias Thurow
 

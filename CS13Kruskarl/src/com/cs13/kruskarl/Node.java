@@ -1,8 +1,10 @@
 package com.cs13.kruskarl;
 
+import java.util.ArrayList;
+
 public class Node {
 
-    private Node parent;
+    private ArrayList<Node> parent = new ArrayList<Node>();
     private String alias;
     private boolean isRoot = false;
     private boolean visited = false;
@@ -17,18 +19,25 @@ public class Node {
      */
     public Node(String name) {
 	alias = name;
-	parent = this;
+	parent.add(this);
     }
 
     public Node getRootNode() {
 
-	Node root;
+	Node root = null;
 
-	if (this.isRoot() == true) {
+	if (this.isRoot()) {
 	    root = this;
 	} else {
-	    root = parent.getRootNode();
+	    for (Node node : parent) {
+		if (node.getParents().contains(node) && node.getParents().size() == 1) {
+		    continue;
+		} else {
+		    node.getRootNode();
+		}
+	    }
 	}
+
 	return root;
     }
 
@@ -36,9 +45,12 @@ public class Node {
 	visited = true;
     }
 
-    public void setParent(Node node) {
-	parent = node;
-	this.isRoot = false;
+    public void addParent(Node node) {
+	parent.add(node);
+    }
+
+    public void removeParent(Node node) {
+	parent.remove(node);
     }
 
     public void setRoot(boolean root) {
@@ -49,7 +61,7 @@ public class Node {
 	return alias;
     }
 
-    public Node getParent() {
+    public ArrayList<Node> getParents() {
 	return parent;
     }
 
