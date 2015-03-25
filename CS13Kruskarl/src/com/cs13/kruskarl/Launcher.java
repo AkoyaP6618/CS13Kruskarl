@@ -77,10 +77,10 @@ public class Launcher {
 
 		firstNode.visit();
 		secondNode.visit();
-		
+
 		firstNode.setRoot(true);
 		firstNode.setRootNode(firstNode);
-		
+
 		secondNode.removeParent(secondNode);
 		secondNode.addParent(firstNode);
 		secondNode.setRootNode(firstNode);
@@ -95,19 +95,15 @@ public class Launcher {
 	    if (firstNode.isVisited() && secondNode.isVisited()
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
-		// Muesste ein Fehler sein
-		// soll -> secondNode.getRootNode().setRoot(false);
-	    	
-	    Node oldRootNode = secondNode.getRootNode();
-	    Node newRootNode = firstNode.getRootNode();
-	    	
+		Node firstRoot = firstNode.getRootNode();
+		Node secondRoot = secondNode.getRootNode();
+
 		for (Node node : nodeList) {
-			if( node.isVisited() && node.getRootNode().equals(oldRootNode)){
-				node.setRootNode(newRootNode);
-			}
+		    if (node.isVisited() && node.getRootNode().equals(secondRoot)) {
+			node.setRootNode(firstRoot);
+		    }
 		}
-		oldRootNode.setRoot(false);
-		secondNode.setRootNode(newRootNode);
+		secondRoot.setRoot(false);
 		secondNode.addParent(firstNode);
 
 		tree.add(entry);
@@ -220,5 +216,4 @@ public class Launcher {
 	frame.add(scrollPane);
 	frame.setVisible(true);
     }
-
 }
