@@ -21,7 +21,7 @@ public class Launcher {
     // Einlesen der Daten, Benutzer waehlt die Datei
    	File file = new File("Daten9A.txt");
    	
-   	int i = new JOptionPane().showConfirmDialog(null, "Bitte geben sie eine Datei mit Kanteneintraegen an.\nStandardmaessig wird die Daten9A.txt benutzt, falls keine Datei ausgewaehlt wurde.", "Hinweis", JOptionPane.YES_OPTION);
+   	int i = new JOptionPane().showConfirmDialog(null, "Bitte geben sie eine Datei mit Kanteneintraegen an.\nStandardmaessig wird die \"Daten9A.txt\" benutzt, falls keine Datei ausgewaehlt wurde.", "Hinweis", JOptionPane.YES_OPTION);
    	if(i == JOptionPane.NO_OPTION){
    		System.exit(0);
    	}
