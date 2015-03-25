@@ -89,16 +89,15 @@ public class Launcher {
 	    if (firstNode.isVisited() && secondNode.isVisited()
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
-		// Muesste ein Fehler sein
-		// soll -> secondNode.getRootNode().setRoot(false);
+		Node firstRoot = firstNode.getRootNode();
+		Node secondRoot = secondNode.getRootNode();
 
 		for (Node node : nodeList) {
-		    if (node.isVisited() && node.getRootNode().equals(secondNode.getRootNode())) {
-			node.setRootNode(firstNode.getRootNode());
+		    if (node.isVisited() && node.getRootNode().equals(secondRoot)) {
+			node.setRootNode(firstRoot);
 		    }
 		}
-		secondNode.getRootNode().setRoot(false);
-		secondNode.setRootNode(firstNode.getRootNode());
+		secondRoot.setRoot(false);
 		secondNode.addParent(firstNode);
 
 		tree.add(entry);
@@ -156,7 +155,7 @@ public class Launcher {
 	    output += "\n\n";
 
 	    // kanonische element ausgabe
-	    kanonischeAusgabe += "\n\nRoot:\t";
+	    kanonischeAusgabe += "\n\n\nRoot:\t";
 	    for (Node node : nodeList) {
 		if (node.getRootNode() != null) {
 		    kanonischeAusgabe += node.getRootNode().getName() + " ";
@@ -199,5 +198,4 @@ public class Launcher {
 	frame.add(scrollPane);
 	frame.setVisible(true);
     }
-
 }
