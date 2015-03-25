@@ -74,10 +74,12 @@ public class Launcher {
 
 		firstNode.visit();
 		secondNode.visit();
+		
 		firstNode.setRoot(true);
 		firstNode.setRootNode(firstNode);
-		secondNode.addParent(firstNode);
+		
 		secondNode.removeParent(secondNode);
+		secondNode.addParent(firstNode);
 		secondNode.setRootNode(firstNode);
 		tree.add(entry);
 
@@ -92,13 +94,17 @@ public class Launcher {
 		// Muesste ein Fehler sein
 		// soll -> secondNode.getRootNode().setRoot(false);
 		
+	    	
+	    Node oldRootNode = secondNode.getRootNode();
+	    Node newRootNode = firstNode.getRootNode();
+	    	
 		for (Node node : nodeList) {
-			if( node.isVisited() && node.getRootNode().equals(secondNode.getRootNode())){
-				node.setRootNode(firstNode.getRootNode());
+			if( node.isVisited() && node.getRootNode().equals(oldRootNode)){
+				node.setRootNode(newRootNode);
 			}
 		}
-		secondNode.getRootNode().setRoot(false);
-		secondNode.setRootNode(firstNode.getRootNode());
+		oldRootNode.setRoot(false);
+		secondNode.setRootNode(newRootNode);
 		secondNode.addParent(firstNode);
 		
 		tree.add(entry);
