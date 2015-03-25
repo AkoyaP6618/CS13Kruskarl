@@ -61,11 +61,11 @@ public class Launcher {
 	queue = reader.readEdges(nodeList);
 
 	boolean somethingHappened = false;
-	
+
 	while (!queue.isEmpty()) {
 
-		somethingHappened = false;
-		
+	    somethingHappened = false;
+
 	    Edge entry = queue.poll();
 	    // Sebastian Wolff
 
@@ -144,60 +144,63 @@ public class Launcher {
 	    // --> wenn beide besucht mit gleicher Wurzel passiert nichts
 
 	    // Hier wird lediglich die Ausgabe von Informationen vorbereitet und formatiert
-	    
-	    if(somethingHappened){
-	    String printOut = "Noch nicht besucht:";
-	    String liste = "";
-	    for (Node node : nodeList) {
-		if (node.isVisited() == false) {
-		    liste += " " + node.getName();
-		}
-	    }
-	    if(liste != ""){
-	    	output += printOut + liste + "\n";
-	    }else{
-	    	output += "Alle Knoten wurden besucht.\n";
-	    }
-	    
-	    output += "Rootknoten:";
-	    for (Node node : nodeList) {
-		if (node.isRoot()) {
-		    output += " " + node.getName();
-		}
-	    }
-	    output += "\n\n";
 
-	    // kanonische element ausgabe
-	    kanonischeAusgabe += "\n\nRoot:\t";
-	    for (Node node : nodeList) {
-		if (node.getRootNode() != null) {
-			if(node.getRootNode().getName().length() < node.getName().length()){
-				kanonischeAusgabe += node.getRootNode().getName() + "_ ";
-			}else{
-				kanonischeAusgabe += node.getRootNode().getName() + " ";
-			}
+	    if (somethingHappened) {
+		String printOut = "Noch nicht besucht:";
+		String liste = "";
+		for (Node node : nodeList) {
+		    if (node.isVisited() == false) {
+			liste += " " + node.getName();
+		    }
+		}
+		if (liste != "") {
+		    output += printOut + liste + "\n";
 		} else {
-		    kanonischeAusgabe += node.getName() + " ";
+		    output += "Alle Knoten wurden besucht.\n";
+		}
+
+		output += "Rootknoten:";
+		for (Node node : nodeList) {
+		    if (node.isRoot()) {
+			output += " " + node.getName();
+		    }
+		}
+		output += "\n\n";
+
+		// kanonische element ausgabe
+		kanonischeAusgabe += "\n\nRoot:\t";
+		for (Node node : nodeList) {
+		    if (node.getRootNode() != null) {
+			if (node.getRootNode().getName().length() < node.getName().length()) {
+			    kanonischeAusgabe += node.getRootNode().getName() + "_ ";
+			} else {
+			    kanonischeAusgabe += node.getRootNode().getName() + " ";
+			}
+		    } else {
+			kanonischeAusgabe += node.getName() + " ";
+		    }
+		}
+
+		kanonischeAusgabe += "\nNode:\t";
+		for (Node node : nodeList) {
+		    if (node.getRootNode() != null
+			    && node.getName().length() < node.getRootNode().getName().length()) {
+			kanonischeAusgabe += node.getName() + "_ ";
+		    } else {
+			kanonischeAusgabe += node.getName() + " ";
+		    }
 		}
 	    }
-
-	    kanonischeAusgabe += "\nNode:\t";
-	    for (Node node : nodeList) {
-	    	if(node.getRootNode() != null && node.getName().length() < node.getRootNode().getName().length()){
-	    		kanonischeAusgabe += node.getName() + "_ ";
-			}else{
-				kanonischeAusgabe += node.getName() + " ";
-			}
-	    }}
 	}
 
 	// Matthias Thurow
 
-	output += "\n*Hinweis, die \"_\" dienen nur zur Einrueckung der einstelligen Zahlen.*\nKanonische Ausgabe:\n" + kanonischeAusgabe;
+	output += "\n*Hinweis, die \"_\" dienen nur zur Einrueckung der einstelligen Zahlen.*\nKanonische Ausgabe:\n"
+		+ kanonischeAusgabe;
 	output += "\n\n\t-- Alle Kanten des Minimalgeruests im Ueberblick --\n";
 	for (Edge edge : tree) { // Ausgabe des Minimalgeruests
-	    output += "\t\t{ " + edge.getFirstNode().getName() + " , " + edge.getSecondNode().getName()
-		    + " , " + edge.getWeight() + " }" + "\n";
+	    output += "\t\t{ " + edge.getFirstNode().getName() + " , "
+		    + edge.getSecondNode().getName() + " , " + edge.getWeight() + " }" + "\n";
 	}
 
 	// Sebastian Wolff
@@ -205,7 +208,7 @@ public class Launcher {
 	// Ausgabe in einem extra-Fenster
 	JFrame frame = new JFrame("Minimalgeruest");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setSize(600, 800);
+	frame.setSize(700, 800);
 	frame.setLocationRelativeTo(null);
 
 	JTextArea area = new JTextArea();
