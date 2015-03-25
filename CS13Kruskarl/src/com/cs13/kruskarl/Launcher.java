@@ -88,12 +88,18 @@ public class Launcher {
 	    if (firstNode.isVisited() && secondNode.isVisited()
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
-		secondNode.addParent(firstNode);
 		// Muesste ein Fehler sein
 		// soll -> secondNode.getRootNode().setRoot(false);
+		
+		for (Node node : nodeList) {
+			if( node.isVisited() && node.getRootNode().equals(secondNode.getRootNode())){
+				node.setRootNode(firstNode.getRootNode());
+			}
+		}
 		secondNode.getRootNode().setRoot(false);
 		secondNode.setRootNode(firstNode.getRootNode());
-
+		secondNode.addParent(firstNode);
+		
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
