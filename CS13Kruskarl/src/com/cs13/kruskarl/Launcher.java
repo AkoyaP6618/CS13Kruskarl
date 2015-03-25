@@ -82,7 +82,10 @@ public class Launcher {
 		    && !firstNode.getRootNode().equals(secondNode.getRootNode())) {
 
 		secondNode.setParent(firstNode);
+		// Muesste ein Fehler sein
 		secondNode.setRoot(false);
+		//secondNode.getRootNode().setRoot(false);
+		
 		System.out.println("added edge " + firstNode.getName() + " - "
 			+ secondNode.getName() + " Gewicht: " + entry.getWeight());
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
