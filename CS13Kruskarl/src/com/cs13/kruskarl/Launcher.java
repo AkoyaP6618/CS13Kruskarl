@@ -74,8 +74,10 @@ public class Launcher {
 		firstNode.visit();
 		secondNode.visit();
 		firstNode.setRoot(true);
+		firstNode.setRootNode(firstNode);
 		secondNode.addParent(firstNode);
 		secondNode.removeParent(secondNode);
+		secondNode.setRootNode(firstNode);
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -90,6 +92,7 @@ public class Launcher {
 		// Muesste ein Fehler sein
 		// soll -> secondNode.getRootNode().setRoot(false);
 		secondNode.getRootNode().setRoot(false);
+		secondNode.setRootNode(firstNode.getRootNode());
 
 		tree.add(entry);
 
@@ -103,6 +106,7 @@ public class Launcher {
 		secondNode.visit();
 		secondNode.addParent(firstNode);
 		secondNode.removeParent(secondNode);
+		secondNode.setRootNode(firstNode.getRootNode());
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -115,6 +119,7 @@ public class Launcher {
 		firstNode.visit();
 		firstNode.addParent(secondNode);
 		firstNode.removeParent(firstNode);
+		firstNode.setRootNode(secondNode.getRootNode());
 		tree.add(entry);
 
 		output += "added edge " + firstNode.getName() + " - " + secondNode.getName()
@@ -135,8 +140,8 @@ public class Launcher {
 		output += printOut + liste + "\n";
 	    }
 
+	    output += "Rootknoten:";
 	    for (Node node : nodeList) {
-		output += "Rootknoten:";
 		if (node.isRoot()) {
 		    output += " " + node.getName();
 		}

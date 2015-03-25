@@ -6,6 +6,7 @@ public class Node {
 
     private ArrayList<Node> parent = new ArrayList<Node>();
     private String alias;
+    private Node root;
     private boolean isRoot = false;
     private boolean visited = false;
 
@@ -24,21 +25,27 @@ public class Node {
 
     public Node getRootNode() {
 
-	Node root = null;
+	//	Node root = null;
+	//
+	//	if (this.isRoot()) {
+	//	    root = this;
+	//	} else {
+	//	    for (Node node : parent) {
+	//		if (node.getParents().contains(node) && node.getParents().size() == 1
+	//			&& !node.isRoot()) {
+	//		    continue;
+	//		} else {
+	//		    root = node.getRootNode();
+	//		    break;
+	//		}
+	//	    }
+	//	}
 
-	if (this.isRoot()) {
-	    root = this;
-	} else {
-	    for (Node node : parent) {
-		if (node.getParents().contains(node) && node.getParents().size() == 1) {
-		    continue;
-		} else {
-		    node.getRootNode();
-		}
-	    }
-	}
+	return this.root;
+    }
 
-	return root;
+    public void setRootNode(Node node) {
+	this.root = node;
     }
 
     public void visit() {
