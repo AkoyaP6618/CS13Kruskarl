@@ -24,23 +24,6 @@ public class Node {
     }
 
     public Node getRootNode() {
-
-	//	Node root = null;
-	//
-	//	if (this.isRoot()) {
-	//	    root = this;
-	//	} else {
-	//	    for (Node node : parent) {
-	//		if (node.getParents().contains(node) && node.getParents().size() == 1
-	//			&& !node.isRoot()) {
-	//		    continue;
-	//		} else {
-	//		    root = node.getRootNode();
-	//		    break;
-	//		}
-	//	    }
-	//	}
-
 	return this.root;
     }
 
